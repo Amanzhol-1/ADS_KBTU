@@ -1,7 +1,3 @@
-// the show must go on  
-// show must go on the
-// must go on the show
-
 #include <iostream>
 
 using namespace std;
