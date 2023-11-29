@@ -4,25 +4,25 @@
 
 using namespace std;
 
-void heapify(vector<long long>& arr, int N, int i) {
-    int min = i;
+void heapify(vector<long long>& arr, int N, int i) { 
+    int min = i; 
     int left = 2 * i + 1; int right = 2 * i + 2;
-    if (left < N && arr[left] < arr[min]) {
+    if (left < N && arr[left] < arr[min]) { 
         min = left;
     }
     if (right < N && arr[right] < arr[min]) {
         min = right;
     }
-    if (min != i) {
+    if (min != i) { 
         swap(arr[i], arr[min]);
         heapify(arr, N, min);
     }
 }
 
-void build_heap(vector<long long>& arr) { //min
+void build_heap(vector<long long>& arr) { 
     int N = arr.size();
 
-    for (int i = N / 2 - 1; i >= 0; i--) {
+    for (int i = N / 2 - 1; i >= 0; i--) { 
         heapify(arr, N, i);
     }
 }
@@ -40,18 +40,18 @@ int main() {
     build_heap(arr);
 
     while (arr.size() > 1) {
-        long long smallest1 = arr[0];//первый самый малый элемент выбираем его из массива
-        arr[0] = arr.back(); //"меняем" его на последний и удаляем последний
+        long long smallest1 = arr[0];
+        arr[0] = arr.back(); 
         arr.pop_back();
-        heapify(arr, arr.size(), 0);//востанавливаем кучу
-        long long smallest2 = arr[0];//тоже самое
+        heapify(arr, arr.size(), 0);
+        long long smallest2 = arr[0];
         arr[0] = arr.back();
         arr.pop_back();
         heapify(arr, arr.size(), 0);
         long long sum = smallest1 + smallest2;
         cnt += sum;
         arr.push_back(sum);
-        heapify(arr, arr.size(), arr.size() - 1);//восстанавливаем кучу после вставки суммы начиная с последнего которого мы всавили
+        heapify(arr, arr.size(), arr.size() - 1);
     }
 
     cout << cnt << endl;
